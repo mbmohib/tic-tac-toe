@@ -59,7 +59,8 @@ class Game extends React.Component {
                 }
             ],
             xIsNext: true,
-            stepNumber: 0
+            stepNumber: 0,
+            active: false
         };
     }
 
@@ -80,7 +81,8 @@ class Game extends React.Component {
     jumpTo(index) {
         this.setState({ 
             stepNumber: index,
-            xIsNext: (index % 2) === 0
+            xIsNext: (index % 2) === 0,
+            active: true
         });
     }
 
@@ -91,7 +93,7 @@ class Game extends React.Component {
 
         const steps = this.state.history.map((step, index) => {
             return (
-                <li key={index} onClick={() => this.jumpTo(index)}>
+                <li className={this.state.stepNumber == index && this.state.active ? 'active' : ''} key={index} onClick={() => this.jumpTo(index)}>
                     <button>Go to Step {index}</button>
                 </li>
             );
