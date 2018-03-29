@@ -1,15 +1,18 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+    font: 14px 'Century Gothic', Futura, sans-serif;
+    margin: 20px;
 }
 
-ol, ul {
-  padding-left: 30px;
+ol,
+ul {
+    padding-left: 30px;
 }
 li {
     margin-bottom: 5px;
+    list-style: none;
 }
-li button {
+li button,
+.btn {
     cursor: pointer;
     display: inline-block;
     font-weight: 400;
@@ -21,11 +24,12 @@ li button {
     -ms-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    padding: .375rem .75rem;
+    padding: 0.375rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .active button {
     color: #fff;
@@ -34,43 +38,49 @@ li button {
 }
 
 .board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+    clear: both;
+    content: '';
+    display: table;
 }
 
 .status {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.status button {
+    margin-left: 30px;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 34px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
 }
 
 .square:focus {
-  outline: none;
+    outline: none;
 }
 
 .kbd-navigation .square:focus {
-  background: #ddd;
+    background: #ddd;
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: auto;
 }
 
 .game-info {
-  margin-left: 20px;
+    margin-left: 20px;
 }
