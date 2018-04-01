@@ -12,9 +12,9 @@ function Square(props) {
 
 class Board extends React.Component {
     renderSquare(i) {
-        console.log(this.props.winner);
         return (
             <Square
+                key={i}
                 classValue={this.props.winner && this.props.winner.includes(i) ? 'winner' : ''}
                 value={this.props.value[i]}
                 onClick={() => this.props.onClick(i)}
@@ -23,27 +23,19 @@ class Board extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-            </div>
-        )
+        const row = [];
+        let columns = [];
+        let cellNumber = 0;
+        for(let i=0; i < 3; i++) {
+            for(let j=0; j < 3; j++) {
+                columns.push(this.renderSquare(cellNumber))
+                cellNumber++;
+            }
+            row.push(<div key={i} className="board-row">{columns}</div>)
+            columns = [];
+        }
+        
+        return <div>{row}</div>;
     }
 }
 
