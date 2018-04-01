@@ -51,6 +51,10 @@ li button,
     margin-left: 30px;
 }
 
+.winner {
+    background: #fff6c3 !important;
+}
+
 .square {
     background: #fff;
     border: 1px solid #999;

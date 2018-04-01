@@ -4,7 +4,7 @@ import './index.css'
 
 function Square(props) {
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className={props.classValue + ' square'} onClick={props.onClick}>
             {props.value}
         </button>
     )
@@ -12,8 +12,10 @@ function Square(props) {
 
 class Board extends React.Component {
     renderSquare(i) {
+        console.log(this.props.winner);
         return (
             <Square
+                classValue={this.props.winner && this.props.winner.includes(i) ? 'winner' : ''}
                 value={this.props.value[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -50,7 +52,7 @@ function Steps(props) {
         return (
             <li
                 className={
-                    props.stepNumber == index && props.active ? 'active' : ''
+                    props.stepNumber === index && props.active ? 'active' : ''
                 }
                 key={index}
                 onClick={() => props.jumpTo(index)}
@@ -112,10 +114,11 @@ class Game extends React.Component {
     render() {
         const current = this.state.history[this.state.stepNumber]
         const winner = calculateWinner(current.squares)
+        
         let status
 
         if (winner) {
-            status = `Winner: ${winner}`
+            status = `Winner: ${this.state.xIsNext ? 'O' : 'X'}`
         } else {
             status = `Next Player: ${this.state.xIsNext ? 'X' : 'O'}`
         }
@@ -124,6 +127,7 @@ class Game extends React.Component {
             <div className="game">
                 <div className="game-board">
                     <Board
+                        winner={winner}
                         value={current.squares}
                         onClick={i => this.handleClick(i)}
                     />
@@ -167,7 +171,7 @@ function calculateWinner(squares) {
             squares[a] === squares[b] &&
             squares[a] === squares[c]
         ) {
-            return squares[a]
+            return lines[i]
         }
     }
     return null
